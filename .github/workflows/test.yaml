@@ -17,10 +17,9 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.0'
-          tools: composer
+          coverage: none
       - name: Install dependencies
-        run: |
-          php composer install
+        run:  composer install
       - name: Run lint
         run: php vendor/bin/phpcs
       - name: Run tests
