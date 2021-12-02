@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Aoc2021\Contracts;
 
 interface Runnable

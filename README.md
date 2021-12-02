@@ -16,6 +16,7 @@ See each day for more information. I copied the instructions there as well.
 1. Run:
     - `php start.php` to execute runner
     - `php vendor/bin/phpunit` to start tests
+    - `php vendor/bin/phpcs` to run linter
 
 ### Running with Docker
 
@@ -29,6 +30,8 @@ wget https://composer.github.io/installer.sig -O - -q | tr -d '\n' > installer.s
 ./php composer-setup.php
 ./php -r "unlink('composer-setup.php'); unlink('installer.sig');"
 ```
+
+> If you have problem with `./php composer-setup.php` remove from `./php` temporarily the part `--user "$(id -u):$(id -g)"`
 
 Then it remains the same, just use `./php` instead of `php`
 

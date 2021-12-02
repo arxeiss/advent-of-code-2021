@@ -1,18 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Aoc2021\Utils;
 
 use Aoc2021\Utils\Collection;
 
 class Parser
 {
-	static public function getLines(string $input): Collection
+	public static function getLines(string $input): Collection
 	{
-		return (new Collection(explode("\n", $input)))->filter();
+		return (new Collection(\explode("\n", $input)))->filter();
 	}
 
-	static public function getIntLines(string $input): Collection
+	public static function getIntLines(string $input): Collection
 	{
-		return static::getLines($input)->map(fn ($i) => (int)$i);
+		return static::getLines($input)->map(static fn ($i) => (int)$i);
 	}
 }
