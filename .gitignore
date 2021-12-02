@@ -1,0 +1,8 @@
+composer.phar
+.phpunit.result.cache
+
+# Dependency directories (remove the comment below to include it)
+vendor/
+
+task.html
+task.md
