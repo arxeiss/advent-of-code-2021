@@ -13,6 +13,11 @@ class Parser
 		return (new Collection(\explode("\n", $input)))->filter();
 	}
 
+	public static function getLineElements(string $input): Collection
+	{
+		return static::getLines($input)->map(static fn ($e) => \explode(' ', $e));
+	}
+
 	public static function getIntLines(string $input): Collection
 	{
 		return static::getLines($input)->map(static fn ($i) => (int)$i);

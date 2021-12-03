@@ -42,3 +42,4 @@ Then it remains the same, just use `./php` instead of `php`
 ## Days
 
 - [Day 1: Sonar Sweep](/day1)
+- [Day 2: Dive!](/day2)
