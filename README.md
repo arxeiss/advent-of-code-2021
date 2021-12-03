@@ -41,6 +41,6 @@ Then it remains the same, just use `./php` instead of `php`
 
 ## Days
 
-- [Day 1: Sonar Sweep](/day1)
-- [Day 2: Dive!](/day2)
-- [Day 3: Binary Diagnostic](/day3)
+- [Day 1: Sonar Sweep](/src/Day1)
+- [Day 2: Dive!](/src/Day2)
+- [Day 3: Binary Diagnostic](/src/Day3)
