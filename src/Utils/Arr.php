@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * This file is taken from Laravel Framework
+ * https://laravel.com/
+ */
+
 namespace Aoc2021\Utils;
 
 use Closure;
