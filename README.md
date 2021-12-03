@@ -43,3 +43,4 @@ Then it remains the same, just use `./php` instead of `php`
 
 - [Day 1: Sonar Sweep](/day1)
 - [Day 2: Dive!](/day2)
+- [Day 3: Binary Diagnostic](/day3)

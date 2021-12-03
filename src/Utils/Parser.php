@@ -13,9 +13,9 @@ class Parser
 		return (new Collection(\explode("\n", $input)))->filter();
 	}
 
-	public static function getLineElements(string $input): Collection
+	public static function getLineElements(string $input, string $delimiter = ' '): Collection
 	{
-		return static::getLines($input)->map(static fn ($e) => \explode(' ', $e));
+		return static::getLines($input)->map(static fn ($e) => \explode($delimiter, $e));
 	}
 
 	public static function getIntLines(string $input): Collection

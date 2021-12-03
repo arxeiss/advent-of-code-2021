@@ -7,6 +7,7 @@ namespace Aoc2021;
 use Aoc2021\Contracts\Runnable;
 use Aoc2021\Day1\Day1;
 use Aoc2021\Day2\Day2;
+use Aoc2021\Day3\Day3;
 
 class Runner
 {
@@ -14,6 +15,7 @@ class Runner
 	private array $days = [
 		1 => Day1::class,
 		2 => Day2::class,
+		3 => Day3::class,
 	];
 
 	public function start(): void
