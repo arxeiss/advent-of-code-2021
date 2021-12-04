@@ -8,6 +8,7 @@ use Aoc2021\Contracts\Runnable;
 use Aoc2021\Day1\Day1;
 use Aoc2021\Day2\Day2;
 use Aoc2021\Day3\Day3;
+use Aoc2021\Day4\Day4;
 
 class Runner
 {
@@ -16,6 +17,7 @@ class Runner
 		1 => Day1::class,
 		2 => Day2::class,
 		3 => Day3::class,
+		4 => Day4::class,
 	];
 
 	public function start(): void
