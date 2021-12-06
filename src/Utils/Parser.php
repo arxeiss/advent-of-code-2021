@@ -27,4 +27,9 @@ class Parser
 	{
 		return static::getLines($input)->map(static fn ($i) => (int)$i);
 	}
+
+	public static function getIntElements(string $input, string $separator): Collection
+	{
+		return static::getElements($input, $separator)->map(static fn ($i) => (int)$i);
+	}
 }

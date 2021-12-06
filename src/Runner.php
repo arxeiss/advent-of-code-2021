@@ -10,6 +10,7 @@ use Aoc2021\Day2\Day2;
 use Aoc2021\Day3\Day3;
 use Aoc2021\Day4\Day4;
 use Aoc2021\Day5\Day5;
+use Aoc2021\Day6\Day6;
 
 class Runner
 {
@@ -20,6 +21,7 @@ class Runner
 		3 => Day3::class,
 		4 => Day4::class,
 		5 => Day5::class,
+		6 => Day6::class,
 	];
 
 	public function start(): void
