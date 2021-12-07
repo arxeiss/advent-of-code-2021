@@ -12,12 +12,7 @@ class Day5 implements Runnable
 {
 	public function part1(string $input): string
 	{
-		$elements = Parser::getLines($input)->map(static function ($e) {
-			$matches = [];
-			\preg_match('/(?<x1>[0-9]+),(?<y1>[0-9]+) -> (?<x2>[0-9]+),(?<y2>[0-9]+)/', $e, $matches);
-
-			return $matches;
-		});
+		$elements = $this->getElements($input);
 
 		$matrix = new Collection();
 		foreach ($elements as $line) {
@@ -43,12 +38,7 @@ class Day5 implements Runnable
 
 	public function part2(string $input): string
 	{
-		$elements = Parser::getLines($input)->map(static function ($e) {
-			$matches = [];
-			\preg_match('/(?<x1>[0-9]+),(?<y1>[0-9]+) -> (?<x2>[0-9]+),(?<y2>[0-9]+)/', $e, $matches);
-
-			return $matches;
-		});
+		$elements = $this->getElements($input);
 
 		$matrix = new Collection();
 		foreach ($elements as $line) {
@@ -84,5 +74,15 @@ class Day5 implements Runnable
 		}
 
 		return (string)$matrix->filter(static fn ($e) => $e >= 2)->count();
+	}
+
+	private function getElements(string $input): Collection
+	{
+		return Parser::getLines($input)->map(static function ($e) {
+			$matches = [];
+			\preg_match('/(?<x1>[0-9]+),(?<y1>[0-9]+) -> (?<x2>[0-9]+),(?<y2>[0-9]+)/', $e, $matches);
+
+			return $matches;
+		});
 	}
 }

@@ -13,8 +13,9 @@ $desc = $finder->query("//*[@class='day-desc']");
 ob_start();
 $header = $finder->query(".//h2", $desc->item(0));
 $headerText = strip_tags($dom->saveHtml($header->item(0)));
-preg_match('/Day ([0-9]+)/i', $headerText, $matches);
+preg_match('/Day ([0-9]+): (.*) ---/i', $headerText, $matches);
 $currentDay = $matches[1];
+$dayName = $matches[2];
 $desc->item(0)->removeChild($header->item(0));
 
 echo "# {$headerText}\n\n";
@@ -43,3 +44,4 @@ echo trim($content);
 echo "\n";
 
 file_put_contents("src/Day{$currentDay}/README.md", ob_get_clean());
+file_put_contents("README.md", "- [Day {$currentDay}: {$dayName}](/src/Day{$currentDay})\n", FILE_APPEND);
