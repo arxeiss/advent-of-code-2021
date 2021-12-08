@@ -51,6 +51,20 @@ class Day8 implements Runnable
 		return (string)$sum;
 	}
 
+	/*
+	 * In mapping I use differnt naming than in examples in AoC. My 7 segment is like this
+	 *
+	 *  aaaa
+	 * f    b
+	 * f    b
+	 * f    b
+	 *  gggg
+	 * e    c
+	 * e    c
+	 * e    c
+	 *  dddd
+	 */
+
 	private function getMapping(Collection $entry): Collection
 	{
 		$counting = new Collection(['a' => 0, 'b' => 0, 'c' => 0, 'd' => 0, 'e' => 0, 'f' => 0, 'g' => 0]);
