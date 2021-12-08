@@ -74,11 +74,7 @@ class Day8 implements Runnable
 			$numLen = \strlen($cryptNumber);
 			for ($i = 0; $i < $numLen; $i += 1) {
 				$c = $cryptNumber[$i];
-				if (isset($counting[$c])) {
-					$counting[$c] += 1;
-				} else {
-					$counting[$c] = 0;
-				}
+				$counting[$c] += 1;
 			}
 			[$one, $four, $seven] = match ($numLen) {
 				2 => [$cryptNumber, $four, $seven],
