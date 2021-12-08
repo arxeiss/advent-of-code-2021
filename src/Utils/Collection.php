@@ -898,6 +898,23 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
 	}
 
 	/**
+	 * Key an associative array by a field or using a callback.
+	 *
+	 * @return static
+	 */
+	public function keysByValue($search)
+	{
+		$keys = [];
+		foreach ($this->items as $key => $value) {
+			if ($value === $search) {
+				$keys[] = $key;
+			}
+		}
+
+		return new static($keys);
+	}
+
+	/**
 	 * Determine if an item exists in the collection by key.
 	 *
 	 * @param  mixed  $key
