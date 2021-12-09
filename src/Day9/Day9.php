@@ -75,27 +75,16 @@ class Day9 implements Runnable
 
 	private function countBasinSize(Collection $map, int $x, int $y): int
 	{
-		$s = 1;
-
-		$current = $map[$y][$x] ?? 99;
-		if ($current > 8) {
+		if (($map[$y][$x] ?? 99) > 8) {
 			return 0;
 		}
-
 		$map[$y][$x] = 99; // Reset currently counted to invalid to avoid infinite cycle
 
-		if (($codes[$y - 1][$x] ?? 99) > $current) {
-			$s += $this->countBasinSize($map, $x, $y - 1);
-		}
-		if (($codes[$y][$x - 1] ?? 99) > $current) {
-			$s += $this->countBasinSize($map, $x - 1, $y);
-		}
-		if (($codes[$y + 1][$x] ?? 99) > $current) {
-			$s += $this->countBasinSize($map, $x, $y + 1);
-		}
-		if (($codes[$y][$x + 1] ?? 99) > $current) {
-			$s += $this->countBasinSize($map, $x + 1, $y);
-		}
+		$s = 1;
+		$s += $this->countBasinSize($map, $x, $y - 1);
+		$s += $this->countBasinSize($map, $x - 1, $y);
+		$s += $this->countBasinSize($map, $x, $y + 1);
+		$s += $this->countBasinSize($map, $x + 1, $y);
 
 		return $s;
 	}
