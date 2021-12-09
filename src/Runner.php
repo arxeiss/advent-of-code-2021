@@ -5,29 +5,29 @@ declare(strict_types=1);
 namespace Aoc2021;
 
 use Aoc2021\Contracts\Runnable;
-use Aoc2021\Day1\Day1;
-use Aoc2021\Day2\Day2;
-use Aoc2021\Day3\Day3;
-use Aoc2021\Day4\Day4;
-use Aoc2021\Day5\Day5;
-use Aoc2021\Day6\Day6;
-use Aoc2021\Day7\Day7;
-use Aoc2021\Day8\Day8;
-use Aoc2021\Day9\Day9;
+use Aoc2021\Day01\Day01;
+use Aoc2021\Day02\Day02;
+use Aoc2021\Day03\Day03;
+use Aoc2021\Day04\Day04;
+use Aoc2021\Day05\Day05;
+use Aoc2021\Day06\Day06;
+use Aoc2021\Day07\Day07;
+use Aoc2021\Day08\Day08;
+use Aoc2021\Day09\Day09;
 
 class Runner
 {
 	/** @var array<int, Runnable> */
 	private array $days = [
-		1 => Day1::class,
-		2 => Day2::class,
-		3 => Day3::class,
-		4 => Day4::class,
-		5 => Day5::class,
-		6 => Day6::class,
-		7 => Day7::class,
-		8 => Day8::class,
-		9 => Day9::class,
+		1 => Day01::class,
+		2 => Day02::class,
+		3 => Day03::class,
+		4 => Day04::class,
+		5 => Day05::class,
+		6 => Day06::class,
+		7 => Day07::class,
+		8 => Day08::class,
+		9 => Day09::class,
 	];
 
 	public function start(string $argDay = '', string $argPart = ''): void
@@ -61,7 +61,7 @@ class Runner
 			$part = \trim((string)\readline('Part: ')) === '2' ? 2 : 1;
 		}
 
-		$inputFile = "src/Day{$day}/input.txt";
+		$inputFile = 'src/Day' . \str_pad("{$day}", 2, '0', \STR_PAD_LEFT) . '/input.txt';
 		if (!\file_exists($inputFile)) {
 			echo "Input file '{$inputFile}' does not exists\n";
 

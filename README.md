@@ -41,12 +41,12 @@ Then it remains the same, just use `./php` instead of `php`
 
 ## Days
 
-- [Day 1: Sonar Sweep](/src/Day1)
-- [Day 2: Dive!](/src/Day2)
-- [Day 3: Binary Diagnostic](/src/Day3)
-- [Day 4: Giant Squid](/src/Day4)
-- [Day 5: Hydrothermal Venture](/src/Day5)
-- [Day 6: Lanternfish](/src/Day6)
-- [Day 7: The Treachery of Whales](/src/Day7)
-- [Day 8: Seven Segment Search](/src/Day8)
-- [Day 9: Smoke Basin](/src/Day9)
+- [Day 1: Sonar Sweep](/src/Day01)
+- [Day 2: Dive!](/src/Day02)
+- [Day 3: Binary Diagnostic](/src/Day03)
+- [Day 4: Giant Squid](/src/Day04)
+- [Day 5: Hydrothermal Venture](/src/Day05)
+- [Day 6: Lanternfish](/src/Day06)
+- [Day 7: The Treachery of Whales](/src/Day07)
+- [Day 8: Seven Segment Search](/src/Day08)
+- [Day 9: Smoke Basin](/src/Day09)
