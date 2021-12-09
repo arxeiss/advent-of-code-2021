@@ -49,3 +49,4 @@ Then it remains the same, just use `./php` instead of `php`
 - [Day 6: Lanternfish](/src/Day6)
 - [Day 7: The Treachery of Whales](/src/Day7)
 - [Day 8: Seven Segment Search](/src/Day8)
+- [Day 9: Smoke Basin](/src/Day9)
