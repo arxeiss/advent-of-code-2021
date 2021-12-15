@@ -1,5 +1,7 @@
 <?php
 
+ini_set('memory_limit', '1024M');
+
 use Aoc2021\Runner;
 
 include 'vendor/autoload.php';
