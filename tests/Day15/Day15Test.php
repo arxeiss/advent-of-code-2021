@@ -18,6 +18,6 @@ final class Day15Test extends TestCase
 	public function testPart2(): void
 	{
 		$result = (new Day15())->part2($this->getTestInput());
-		$this->assertSame($result, "315");
+		$this->assertSame($result, '315');
 	}
 }

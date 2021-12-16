@@ -60,7 +60,6 @@ class Runner
 		}
 
 		$c = new $this->days[$day]();
-
 		if (!$c instanceof Runnable) {
 			echo "This day does not implements required contracts\n";
 
@@ -84,6 +83,6 @@ class Runner
 		$start = \microtime(true);
 		echo $c->{'part' . $part}(\file_get_contents($inputFile));
 		echo "\n\nFinished in " . \round((\microtime(true) - $start) * 1000, 5) . " ms\n";
-		echo "Max memory usage: " . (memory_get_peak_usage(true) / 1024 / 1024) . " MB\nGood bye\n";
+		echo 'Max memory usage: ' . (\memory_get_peak_usage(true) / 1024 / 1024) . " MB\nGood bye\n";
 	}
 }
