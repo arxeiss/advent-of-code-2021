@@ -56,3 +56,4 @@ Then it remains the same, just use `./php` instead of `php`
 - [Day 13: Transparent Origami](/src/Day13)
 - [Day 14: Extended Polymerization](/src/Day14)
 - [Day 15: Chiton](/src/Day15)
+- [Day 16: Packet Decoder](/src/Day16)
