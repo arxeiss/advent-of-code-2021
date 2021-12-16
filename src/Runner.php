@@ -19,6 +19,7 @@ use Aoc2021\Day11\Day11;
 use Aoc2021\Day12\Day12;
 use Aoc2021\Day13\Day13;
 use Aoc2021\Day14\Day14;
+use Aoc2021\Day15\Day15;
 
 class Runner
 {
@@ -38,6 +39,7 @@ class Runner
 		12 => Day12::class,
 		13 => Day13::class,
 		14 => Day14::class,
+		15 => Day15::class,
 	];
 
 	public function start(string $argDay = '', string $argPart = ''): void
@@ -58,7 +60,6 @@ class Runner
 		}
 
 		$c = new $this->days[$day]();
-
 		if (!$c instanceof Runnable) {
 			echo "This day does not implements required contracts\n";
 
@@ -81,6 +82,7 @@ class Runner
 		echo "\nResult of Day {$day} part {$part} is:\n\n  ";
 		$start = \microtime(true);
 		echo $c->{'part' . $part}(\file_get_contents($inputFile));
-		echo "\n\nFinished in " . \round((\microtime(true) - $start) * 1000, 5) . " ms\nGood bye\n";
+		echo "\n\nFinished in " . \round((\microtime(true) - $start) * 1000, 5) . " ms\n";
+		echo 'Max memory usage: ' . (\memory_get_peak_usage(true) / 1024 / 1024) . " MB\nGood bye\n";
 	}
 }
