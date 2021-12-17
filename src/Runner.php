@@ -52,9 +52,7 @@ class Runner
 		if ($day === 0) {
 			$from = \min(\array_keys($this->days));
 			$to = \max(\array_keys($this->days));
-
-			echo "Select a day to run [{$from}-{$to}]:\n";
-			$day = (int)\trim((string)\readline('Day: '));
+			$day = (int)\trim((string)\readline("Select a day to run [{$from}-{$to}]:\nDay: "));
 		}
 
 		if (empty($this->days[$day])) {
@@ -72,8 +70,7 @@ class Runner
 
 		$part = (int)$argPart;
 		if ($part === 0) {
-			echo "Select part to run [1 or 2]:\n";
-			$part = \trim((string)\readline('Part: ')) === '2' ? 2 : 1;
+			$part = \trim((string)\readline("Select part to run [1 or 2]:\nPart: ")) === '2' ? 2 : 1;
 		}
 
 		$inputFile = 'src/Day' . \str_pad("{$day}", 2, '0', \STR_PAD_LEFT) . '/input.txt';
@@ -88,5 +85,48 @@ class Runner
 		echo $c->{'part' . $part}(\file_get_contents($inputFile));
 		echo "\n\nFinished in " . \round((\microtime(true) - $start) * 1000, 5) . " ms\n";
 		echo 'Max memory usage: ' . (\memory_get_peak_usage(true) / 1024 / 1024) . " MB\nGood bye\n";
+	}
+
+	public function runPerformanceTest(string $day = ''): void
+	{
+		$toRun = $this->days;
+		$d = (int)$day;
+		if ($d > 0) {
+			$toRun = [$d => $this->days[$d]];
+		}
+		echo "           |   Min [ms]   |   Avg [ms]   |   Max [ms]\n";
+		foreach ($toRun as $n => $class) {
+			$c = new $class();
+			$input = \file_get_contents('src/Day' . \str_pad("{$n}", 2, '0', \STR_PAD_LEFT) . '/input.txt');
+			\printf(" Day %2d  ------------------------------------------------\n", $n);
+
+			$durations = [];
+			for ($i = 0; $i < 5; $i += 1) {
+				$start = \microtime(true);
+				$c->part1($input);
+				$end = \microtime(true);
+				$durations[] = \round(($end - $start) * 1000, 4);
+			}
+			\printf(
+				"   Part 1  |   %8.4f   |   %8.4f   |   %8.4f\n",
+				\min($durations),
+				\array_sum($durations) / 5,
+				\max($durations),
+			);
+
+			$durations = [];
+			for ($i = 0; $i < 5; $i += 1) {
+				$start = \microtime(true);
+				$c->part2($input);
+				$end = \microtime(true);
+				$durations[] = \round(($end - $start) * 1000, 4);
+			}
+			\printf(
+				"   Part 2  |   %8.4f   |   %8.4f   |   %8.4f\n",
+				\min($durations),
+				\array_sum($durations) / 5,
+				\max($durations),
+			);
+		}
 	}
 }
