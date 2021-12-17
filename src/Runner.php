@@ -108,7 +108,7 @@ class Runner
 				$durations[] = \round(($end - $start) * 1000, 4);
 			}
 			\printf(
-				"   Part 1  |   %8.4f   |   %8.4f   |   %8.4f\n",
+				"   Part 1  |%11.4f   |%11.4f   |%11.4f\n",
 				\min($durations),
 				\array_sum($durations) / 5,
 				\max($durations),
@@ -122,7 +122,7 @@ class Runner
 				$durations[] = \round(($end - $start) * 1000, 4);
 			}
 			\printf(
-				"   Part 2  |   %8.4f   |   %8.4f   |   %8.4f\n",
+				"   Part 2  |%11.4f   |%11.4f   |%11.4f\n",
 				\min($durations),
 				\array_sum($durations) / 5,
 				\max($durations),
