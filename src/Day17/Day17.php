@@ -29,61 +29,47 @@ class Day17 implements Runnable
 		$yMin = min((int)$matches[3], (int)$matches[4]);
 		$yMax = max((int)$matches[3], (int)$matches[4]);
 
-		var_dump([
-			'xMin' => $xMin,
-			'xMax' => $xMax,
-			'yMin' => $yMin,
-			'yMax' => $yMax,
-		]);
-
-		$possibleXVelocity = [];
-		$possibleVelocities = 0;
-		for ($xVel = 4; $xVel < $xMax; $xVel += 1) {
+		$possibleVelocities = [];
+		for ($xVel = 0; $xVel <= $xMax; $xVel += 1) {
 			for ($slowTo = $xVel; $slowTo >= 0; $slowTo -= 1) {
 				$r = range($slowTo, $xVel);
 				$xDrop = array_sum($r);
 				$steps = count($r);
 
 				if ($xDrop >= $xMin && $xDrop <= $xMax) {
-					$possibleXVelocity[] = [$steps, $xVel];
 
-					// if ($slowTo === 0) {
-					// 	$possibleVelocities += abs($yMin) - 1;
-					// } else {
-					// 	for ($i = $yMin; $i < $yMin * -1; $i++) {
-					// 		$ry = range($i, $i - $steps);
-					// 		if (count($ry) !== $steps) {
-					// 			continue;
-					// 		}
-					// 		$yDrop = array_sum($ry);
-					// 		if ($yDrop) {
-					// 			// code...
-					// 		}
-					// 	}
-					// }
+					if ($slowTo === 0) {
+						for ($i = $yMin; $i < $yMin * -1 ; $i +=1) {
 
-					// break;
+							$finalY = 0;
+							for ($s=0; $finalY >= $yMin; $s++) {
+								$finalY += $i - $s;
+
+								if ($s >= $steps-1 && $finalY <= $yMax && $finalY >= $yMin) {
+									$possibleVelocities["{$xVel}:{$i}"] = true;
+								}
+							}
+						}
+
+						continue;
+					}
+
+					for ($i = $yMin; $i < $yMin * -1 ; $i +=1) {
+
+						$finalY = 0;
+						for ($s=0; $s < $steps; $s++) {
+							$finalY += $i - $s;
+						}
+
+						if ($finalY <= $yMax && $finalY >= $yMin) {
+							$possibleVelocities["{$xVel}:{$i}"] = true;
+						}
+
+					}
 				}
 			}
 		}
 
-		print_r($possibleXVelocity);
-
-		// $possibleYVelocity = [];
-		// for ($i = 1; true; $i += 1) {
-		// 	// for ($d = $i; $d >= 0; $d -= 1) {
-		// 	$yDrop = array_sum(range($d, $i));
-		// 	if ($yDrop >= $yMin && $yDrop <= $yMax && !in_array($i, $possibleYVelocity)) {
-		// 		$possibleYVelocity[] = $i;
-		// 	}
-		// 	// if ($i > $xMax) {
-		// 	// 	break 2;
-		// 	// }
-		// 	// }
-		// }
-
-		// var_dump($possibleYVelocity);
-
-		return "";
+		return (string)count($possibleVelocities);
 	}
 }
