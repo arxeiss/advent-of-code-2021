@@ -58,3 +58,4 @@ Then it remains the same, just use `./php` instead of `php`
 - [Day 15: Chiton](/src/Day15)
 - [Day 16: Packet Decoder](/src/Day16)
 - [Day 17: Trick Shot](/src/Day17)
+- [Day 18: Snailfish](/src/Day18)
