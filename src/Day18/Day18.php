@@ -15,24 +15,41 @@ class Day18 implements Runnable
 	public function part1(string $input): string
 	{
 		$c = Parser::getLines($input);
+		[$left] = $this->buildTree($c[0]);
+		$this->linkLeafs($left);
 
-		[$n] = $this->buildTree($c[0]);
+		// echo "\n\n" . $left . "\n\n";
 
 		$adds = $c->count();
 		for ($i = 1; $i < $adds; $i += 1) {
-			$n = new BinaryNode($n, $this->buildTree($c[$i])[0]);
+			[$right] = $this->buildTree($c[$i]);
+			$this->linkLeafs($right);
+			$rl = $left->getMostRightLeaf();
+			$lf = $right->getMostLeftLeaf();
+
+			$rl->next = $lf;
+			$lf->previous = $rl;
+
+			$left = new BinaryNode($left, $right);
+			// echo $left . "\n\n";
 
 			$action = true;
 			while ($action === true) {
-				$action = $this->explode($n);
+				$action = $this->explode($left);
 				if ($action) {
+					// echo "Explode:\n" . $left . "\n\n";
 					continue;
 				}
-				$action = $this->split($n);
+				$action = $this->split($left);
+				if ($action) {
+					// echo "Split:\n" . $left . "\n\n";
+				}
 			}
+
+			// echo $left . "\n\n";
 		}
 
-		return (string)$n->magnitude();
+		return (string)$left->magnitude();
 	}
 
 	public function part2(string $input): string
@@ -46,7 +63,18 @@ class Day18 implements Runnable
 				if ($p === $i) {
 					continue;
 				}
-				$n = new BinaryNode($this->buildTree($c[$p])[0], $this->buildTree($c[$i])[0]);
+				[$left] = $this->buildTree($c[$p]);
+				$this->linkLeafs($left);
+				[$right] = $this->buildTree($c[$i]);
+				$this->linkLeafs($right);
+
+				$rl = $left->getMostRightLeaf();
+				$lf = $right->getMostLeftLeaf();
+
+				$rl->next = $lf;
+				$lf->previous = $rl;
+
+				$n = new BinaryNode($left, $right);
 
 				$action = true;
 				while ($action === true) {
@@ -89,6 +117,17 @@ class Day18 implements Runnable
 		return [new BinaryNode($lNode, $rNode), $offset];
 	}
 
+	private function linkLeafs(BinaryNode $rootNode)
+	{
+		$current = $rootNode->getMostLeftLeaf();
+		while (($next = $this->findRightNeighbour($current)) !== null) {
+			$current->next = $next;
+			$next->previous = $current;
+
+			$current = $next;
+		}
+	}
+
 	private function explode(BinaryNode $node, int $depth = 1): bool
 	{
 		if ($node->left instanceof BinaryNode && $this->explode($node->left, $depth + 1)) {
@@ -103,13 +142,27 @@ class Day18 implements Runnable
 
 		$isLeft = $node->parent->left === $node;
 		if ($isLeft) {
-			$this->findLeftNeighbour($node)?->addToNumber($node->left->number);
-			$this->findRightNeighbour($node)?->addToNumber($node->right->number);
-			$node->parent->left = new NumberNode(0, $node->parent);
+			$node->left->previous?->addToNumber($node->left->number);
+			$node->right->next?->addToNumber($node->right->number);
+
+			$nn = new NumberNode(0, $node->parent);
+			$nn->previous = $node->left->previous;
+			$nn->next = $node->right->next;
+
+			$node->left->previous?->setNext($nn);
+			$node->right->next?->setPrevious($nn);
+			$node->parent->left = $nn;
 		} else {
-			$this->findRightNeighbour($node)?->addToNumber($node->right->number);
-			$this->findLeftNeighbour($node)?->addToNumber($node->left->number);
-			$node->parent->right = new NumberNode(0, $node->parent);
+			$node->left->previous?->addToNumber($node->left->number);
+			$node->right->next?->addToNumber($node->right->number);
+
+			$nn = new NumberNode(0, $node->parent);
+			$nn->previous = $node->left->previous;
+			$nn->next = $node->right->next;
+
+			$node->left->previous?->setNext($nn);
+			$node->right->next?->setPrevious($nn);
+			$node->parent->right = $nn;
 		}
 
 		return true;
@@ -119,11 +172,18 @@ class Day18 implements Runnable
 	{
 		if ($node->left instanceof NumberNode) {
 			if ($node->left->number > 9) {
-				$node->left = new BinaryNode(
-					new NumberNode((int)\floor($node->left->number / 2)),
-					new NumberNode((int)\ceil($node->left->number / 2)),
-					$node,
-				);
+				$l = new NumberNode((int)\floor($node->left->number / 2));
+				$r = new NumberNode((int)\ceil($node->left->number / 2));
+
+				$l->next = $r;
+				$r->previous = $l;
+				$l->previous = $node->left->previous;
+				$r->next = $node->left->next;
+
+				$node->left->previous?->setNext($l);
+				$node->left->next?->setPrevious($r);
+
+				$node->left = new BinaryNode($l, $r, $node);
 
 				return true;
 			}
@@ -133,11 +193,18 @@ class Day18 implements Runnable
 
 		if ($node->right instanceof NumberNode) {
 			if ($node->right->number > 9) {
-				$node->right = new BinaryNode(
-					new NumberNode((int)\floor($node->right->number / 2)),
-					new NumberNode((int)\ceil($node->right->number / 2)),
-					$node,
-				);
+				$l = new NumberNode((int)\floor($node->right->number / 2));
+				$r = new NumberNode((int)\ceil($node->right->number / 2));
+
+				$l->next = $r;
+				$r->previous = $l;
+				$l->previous = $node->right->previous;
+				$r->next = $node->right->next;
+
+				$node->right->previous?->setNext($l);
+				$node->right->next?->setPrevious($r);
+
+				$node->right = new BinaryNode($l, $r, $node);
 
 				return true;
 			}
@@ -146,20 +213,6 @@ class Day18 implements Runnable
 		}
 
 		return false;
-	}
-
-	private function findLeftNeighbour(Node $node): ?NumberNode
-	{
-		$parent = $node->getParent();
-		while ($parent !== null) {
-			if ($parent->left !== $node) {
-				return $parent->left->getMostRightLeaf();
-			}
-			$node = $node->parent;
-			$parent = $node->getParent();
-		}
-
-		return null;
 	}
 
 	private function findRightNeighbour(Node $node): ?NumberNode

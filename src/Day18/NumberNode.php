@@ -12,6 +12,9 @@ class NumberNode implements Node
 	public int $number;
 	public ?BinaryNode $parent;
 
+	public ?NumberNode $previous = null;
+	public ?NumberNode $next = null;
+
 	public function __construct(int $number, ?BinaryNode $parent = null)
 	{
 		$this->number = $number;
@@ -48,8 +51,18 @@ class NumberNode implements Node
 		return $this->parent;
 	}
 
+	public function setPrevious(NumberNode $node)
+	{
+		$this->previous = $node;
+	}
+
+	public function setNext(NumberNode $node)
+	{
+		$this->next = $node;
+	}
+
 	public function __toString(): string
 	{
-		return (string)$this->number;
+		return "(" . $this->previous?->number . "<=" . $this->number . "=>" . $this->next?->number . ")";
 	}
 }
