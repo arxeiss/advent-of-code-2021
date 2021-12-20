@@ -37,7 +37,7 @@ Then it remains the same, just use `./php` instead of `php`
 
 ### Days I got stuck and searched for the help
 
-- There will be something for sure....
+- Day 20: I did not realized the endless pane will be changing from zeros to ones and back... The hint from [Kobzol](https://github.com/Kobzol) was required as last years.
 
 ## Days
 
@@ -59,3 +59,4 @@ Then it remains the same, just use `./php` instead of `php`
 - [Day 16: Packet Decoder](/src/Day16)
 - [Day 17: Trick Shot](/src/Day17)
 - [Day 18: Snailfish](/src/Day18)
+- [Day 20: Trench Map](/src/Day20)
