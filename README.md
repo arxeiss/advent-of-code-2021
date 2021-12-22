@@ -37,7 +37,10 @@ Then it remains the same, just use `./php` instead of `php`
 
 ### Days I got stuck and searched for the help
 
-- Day 20: I did not realized the endless pane will be changing from zeros to ones and back... The hint from [Kobzol](https://github.com/Kobzol) was required as last years.
+- Day 20: I did not realized the endless pane will be changing from zeros to ones and back... The hint from [Kobzol](https://github.com/Kobzol) was required.
+- Day 21: I failed with 2 points here. So I went to Reddit for some help and I have found others having same questions.
+    - I did not realized, that in Part 2 each player roll dice 3 times. So not creating 3 universes, but 3x3 universes. [Reddit link](https://www.reddit.com/r/adventofcode/comments/rldjpg/2021_day_21_part_2_i_think_im_misunderstanding/)
+    - I had no idea how to solve it. So I reached for another topic, where the concept of maximum 44100 combinations was described. [Reddit link](https://www.reddit.com/r/adventofcode/comments/rlairt/2021_day21_part2_can_someone_explain_the_proper/)
 
 ## Days
 
@@ -60,3 +63,4 @@ Then it remains the same, just use `./php` instead of `php`
 - [Day 17: Trick Shot](/src/Day17)
 - [Day 18: Snailfish](/src/Day18)
 - [Day 20: Trench Map](/src/Day20)
+- [Day 21: Dirac Dice](/src/Day21)
