@@ -5,6 +5,7 @@ To see the original tasks for all days and previous years, visit https://advento
 
 - Year 2019 in Elixir: https://github.com/arxeiss/advent-of-code-2019
 - Year 2020 in Go: https://github.com/arxeiss/advent-of-code-2020
+- Year 2022 in PHP: https://github.com/arxeiss/advent-of-code-2022
 
 See each day for more information. I copied the instructions there as well.
 
